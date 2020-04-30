@@ -3,6 +3,7 @@ import MainRouter from "../../helpers/router";
 import { paths } from './constants';
 
 import UserRouter from './user';
+import SkillRouter from './skill';
 
 class VersionedRouter extends MainRouter {
     constructor() {
@@ -12,7 +13,8 @@ class VersionedRouter extends MainRouter {
     }
 
     private declareSubRouters() {
-        this.router.use(paths.USER, UserRouter.getRouter());
+        //this.router.use(paths.USER, UserRouter.getRouter());
+        this.router.use(paths.SKILL, SkillRouter.getRouter());
     }
 
     private declareBaseRoute() {
