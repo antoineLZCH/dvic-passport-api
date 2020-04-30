@@ -9,7 +9,7 @@ class VersionedRouter extends MainRouter {
     }
 
     private declareBaseRoute() {
-        this.router.use(paths.DEFAULT, (req: Request, res: Response) => {
+        this.router.get(paths.DEFAULT, (req: Request, res: Response) => {
             return res.send('This is version 1 of the API.')
         })
     }

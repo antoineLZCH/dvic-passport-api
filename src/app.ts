@@ -25,7 +25,7 @@ export default class App {
     }
 
     private configureRoutes() {
-        this.app.use('/', this.AppRouter);
+        this.app.use('/api', this.AppRouter);
     }
 
     public listen() {

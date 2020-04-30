@@ -6,12 +6,12 @@ import VersionedRouter from './v1';
 class AppRouter extends MainRouter {
     constructor() {
         super(paths);
-        this.declareAppBaseRoute();
         this.declareVersionedRouter();
+        this.declareAppBaseRoute();
     }
 
     private declareVersionedRouter() {
-        this.router.use('/v1/', VersionedRouter);
+        this.router.use(paths.V1, VersionedRouter);
     }
 
     private declareAppBaseRoute() {

@@ -1,3 +1,4 @@
 export const paths = {
-    DEFAULT: '/api/'
+    DEFAULT: '/',
+    V1: '/v1'
 }
