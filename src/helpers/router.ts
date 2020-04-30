@@ -1,9 +1,13 @@
 import { Router } from 'express';
 
-export default class MainRouter {
-    public router: Router = Router();
+interface routes {
+    [key: string]: string
+}
 
-    public getRouter() {
-        return this.router;
+export default class CoreRouter {
+    public router: Router = Router();
+    protected routes: routes;
+    constructor(routes: routes) {
+        this.routes = routes;
     }
 }
