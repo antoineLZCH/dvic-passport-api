@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
 import MainRouter from '../helpers/router';
+import {paths} from './constants';
 import VersionedRouter from './v1';
 
 class AppRouter extends MainRouter {
     constructor() {
-        super();
+        super(paths);
         this.declareAppBaseRoute();
         this.declareVersionedRouter();
     }
@@ -14,7 +15,7 @@ class AppRouter extends MainRouter {
     }
 
     private declareAppBaseRoute() {
-        this.router.use('/', (req: Request, res: Response) => {
+        this.router.use(paths.DEFAULT, (req: Request, res: Response) => {
             return res.send('Welcome to the API');
         })
     }

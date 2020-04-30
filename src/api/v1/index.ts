@@ -4,7 +4,7 @@ import { paths } from './constants';
 
 class VersionedRouter extends MainRouter {
     constructor() {
-        super();
+        super(paths);
         this.declareBaseRoute();
     }
 

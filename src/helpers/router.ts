@@ -4,7 +4,7 @@ interface routes {
     [key: string]: string
 }
 
-export default class CoreRouter {
+export default class MainRouter {
     public router: Router = Router();
     protected routes: routes;
     constructor(routes: routes) {
