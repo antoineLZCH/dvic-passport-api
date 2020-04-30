@@ -13,7 +13,7 @@ class VersionedRouter extends MainRouter {
     }
 
     private declareSubRouters() {
-        //this.router.use(paths.USER, UserRouter.getRouter());
+        this.router.use(paths.USER, UserRouter.getRouter());
         this.router.use(paths.SKILL, SkillRouter.getRouter());
     }
 

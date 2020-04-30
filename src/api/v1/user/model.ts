@@ -12,7 +12,7 @@ const joiUserSchema = Joi.object({
         skill_infos: Joi.array().meta({
             _mongoose: {type: database.Schema.Types.ObjectId, ref: "Skill"}
         })
-    })
+    }).meta({_mongoose: {_id: false, timestamps: true}})
 })
 
 const userSchema = new database.Schema(Joigoose.convert(joiUserSchema));
