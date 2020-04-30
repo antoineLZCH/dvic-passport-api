@@ -1,5 +1,5 @@
 export const paths = {
     DEFAULT: "/",
-    PROJECT: "/skill",
+    SKILL: "/skill",
     USER: "/user"
 }
