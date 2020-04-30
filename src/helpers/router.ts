@@ -10,4 +10,8 @@ export default class MainRouter {
     constructor(routes: routes) {
         this.routes = routes;
     }
+
+    public getRouter() {
+        return this.router;
+    }
 }
