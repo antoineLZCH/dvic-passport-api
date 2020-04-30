@@ -2,7 +2,7 @@ import database from '../../../config/database';
 import * as Joi from '@hapi/joi';
 const Joigoose = require('joigoose')(database, null, {
     _id: false,
-    timestamps: false
+    timestamps: true
 });
 
 const joiUserSchema = Joi.object({
