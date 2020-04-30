@@ -7,7 +7,7 @@ export default {
     async getAllSkills(req: Request, res: Response) {
         try {
             const allSkills = await SkillModel.find({}).populate('required_skills');
-            return res.status(201).send(allSkills)
+            return res.status(200).send(allSkills)
         } catch (e) {
             return res.sendStatus(500);
         }
@@ -17,7 +17,7 @@ export default {
         const { id } = req.params;
         try {
             const newSkill = await SkillModel.findById(id).populate('required_skills');
-            return res.status(201).send(newSkill)
+            return res.status(200).send(newSkill)
         } catch (e) {
             return res.sendStatus(500);
         }
@@ -26,7 +26,7 @@ export default {
     async updateSkill(req: Request, res: Response) {
         const { id } = req.params;
         try {
-            const updated = await SkillModel.updateOne({_id: id}, req.body).populate('required_skills');
+            const updated = await SkillModel.updateOne({ _id: id }, req.body).populate('required_skills');
             return res.status(200).send(updated)
         } catch (e) {
             return res.sendStatus(500);
@@ -47,8 +47,34 @@ export default {
         const newSkill: ISkill = req.body;
         try {
             const createSkill = await new SkillModel(newSkill).save();
-            return res.status(201).send(createSkill)
+            return res.status(200).send(createSkill)
         } catch (e) {
+            return res.sendStatus(500);
+        }
+    },
+
+    async removeRequiredSkill(req: Request, res: Response) {
+        const { id } = req.params;
+        const { id: requiredSkillId } = req.body
+        console.log('id', id)
+        console.log('requiredSkillId', requiredSkillId)
+        try {
+            const createSkill = await SkillModel.updateOne({ _id: id },  { $pull:{required_skills: requiredSkillId} });
+            return res.status(200).send(createSkill)
+        } catch (e) {
+            console.error(e);
+            //return res.sendStatus(500);
+        }
+    },
+
+    async addRequiredSkill(req: Request, res: Response) {
+        const { id } = req.params;
+        const { id: requiredSkillId } = req.body
+        try {
+            const createSkill = await SkillModel.updateOne({ _id: id }, { $push: { required_skills: requiredSkillId } });
+            return res.status(200).send(createSkill)
+        } catch (e) {
+            console.error(e);
             return res.sendStatus(500);
         }
     }
