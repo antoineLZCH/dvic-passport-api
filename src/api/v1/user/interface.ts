@@ -4,7 +4,8 @@ interface ISkill {
     required_skills: ISkill[]
 }
 
-interface IOwnedSkill {
+export interface IOwnedSkill {
+    id?: string,
     level: number,
     skill_info: ISkill[]
 }
