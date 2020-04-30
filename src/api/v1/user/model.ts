@@ -9,7 +9,7 @@ const joiUserSchema = Joi.object({
     login_name: Joi.string().required(),
     owned_skills: Joi.array().items({
         level: Joi.number().required().default(0),
-        skill_infos: Joi.array().meta({
+        skill_infos: Joi.string().meta({
             _mongoose: {type: database.Schema.Types.ObjectId, ref: "Skill"}
         })
     }).meta({_mongoose: {_id: false, timestamps: true}})
