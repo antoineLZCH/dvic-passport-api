@@ -1,0 +1,10 @@
+{
+  "name": "dvic-passport-api",
+  "version": 2,
+  "env": {
+    "DB_HOST": "@dvic-host",
+    "DB_PASSWORD": "@dvic-password",
+    "DB_NAME": "@dvic-name",
+    "DB_USER": "@dvic-user"
+  }
+}

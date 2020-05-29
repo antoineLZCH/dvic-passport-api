@@ -45,15 +45,15 @@ async function createUserSkill(req: Request, res: Response) {
     try {
         const createdUserSkill = await UserModel.updateOne(
             { _id: req.params.id }, {
-                $set: {
-                    owned_skills: {
-                        skill_infos: sentRequest.id,
-                        level: sentRequest.level
-                    }
+            $set: {
+                owned_skills: {
+                    skill_infos: sentRequest.id,
+                    level: sentRequest.level
                 }
+            }
         }, { new: true });
 
-        return res.send(createdUserSkill).status(200);
+        return res.send(createdUserSkill).status(201);
     } catch (error) {
         res.status(500).send(error);
         throw new Error(error);
