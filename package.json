@@ -8,7 +8,6 @@
     "build": "tsc",
     "start": "node public/server.js"
   },
-  "type": "module",
   "keywords": [],
   "author": "Antoine LOZACH, Axel André",
   "license": "MIT",
