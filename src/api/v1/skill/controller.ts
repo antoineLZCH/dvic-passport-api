@@ -59,7 +59,7 @@ export default {
         console.log('id', id)
         console.log('requiredSkillId', requiredSkillId)
         try {
-            const createSkill = await SkillModel.updateOne({ _id: id },  { $pull:{required_skills: requiredSkillId} });
+            const createSkill = await SkillModel.updateOne({ _id: id }, { $pull: { required_skills: requiredSkillId } });
             return res.status(200).send(createSkill)
         } catch (e) {
             console.error(e);
