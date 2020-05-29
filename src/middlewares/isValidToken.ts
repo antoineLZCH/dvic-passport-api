@@ -4,11 +4,11 @@ import * as jwt from 'jsonwebtoken'
 import getTokenFromRequest from '../helpers/getTokenFromRequest'
 
 
-const checkToken = (token) => {
+const checkToken = (token: string) => {
     const { PUBLIC_KEY } = process.env;
     return jwt.verify(token, PUBLIC_KEY, {
-        algorithms: ['RS256'] 
-    } );
+        algorithms: ['RS256']
+    });
 }
 
 

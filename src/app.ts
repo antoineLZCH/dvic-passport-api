@@ -1,8 +1,8 @@
-import * as express from 'express';
+import express = require('express');
 import { Application, Router, Request, Response } from 'express';
-import * as morgan from 'morgan';
-import * as helmet from 'helmet';
-import * as compress from 'compression';
+import morgan = require('morgan');
+import helmet = require('helmet');
+import compress = require('compression');
 import bodyParser = require('body-parser');
 
 import AppRouter from './api';
