@@ -41,6 +41,7 @@ async function deleteUser(req: Request, res: Response) {
 }
 
 async function createUserSkill(req: Request, res: Response) {
+  
     const skillId  = req.params.skillId;
     try {
         const createdUserSkill = await UserModel.updateOne(
@@ -62,7 +63,9 @@ async function createUserSkill(req: Request, res: Response) {
 }
 
 async function updateUserSkill(req: Request, res: Response) {
+
     const skillId = req.params.skillId;
+
     try {
         const updateUserSkill = await UserModel.updateOne({
             _id: req.params.id, "owned_skills.skill_infos": skillId

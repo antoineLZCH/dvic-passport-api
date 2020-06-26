@@ -1,8 +1,9 @@
-import * as express from 'express';
+import express from 'express';
 import { Application, Router, Request, Response } from 'express';
-import * as morgan from 'morgan';
-import * as helmet from 'helmet';
-import bodyParser = require('body-parser');
+import morgan from 'morgan';
+import helmet from 'helmet';
+import compress from 'compression';
+import bodyParser from 'body-parser';
 
 import AppRouter from './api';
 
@@ -22,7 +23,8 @@ export default class App {
         this.app.use(morgan('combined'));
         this.app.use(helmet());
         this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({extended: true}));
+        this.app.use(bodyParser.urlencoded({ extended: true }));
+        this.app.use(compress());
     }
 
     private configureRoutes() {
