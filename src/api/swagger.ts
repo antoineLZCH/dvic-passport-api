@@ -343,12 +343,53 @@ export default  {
         ]
       }
     },
+    '/skill/{skillId}/user': {
+      get: {
+        tags: [
+          'Skills'
+        ],
+        summary: 'Returns all users that have a certain skill.',
+        responses: {
+          '200': {
+            description: 'A JSON array of user names',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'array',
+                  items:{
+                    $ref: '#/components/schemas/User'
+                  }
+                }
+              }
+            }
+          },
+          '403': {
+            description: 'Forbidden'
+          }
+        },
+        security: [
+          {
+            bearerAuth: []
+          }
+        ],
+        parameters: [
+          {
+            'in': 'path',
+            name: 'skillId',
+            schema: {
+              type: 'string'
+            },
+            required: true
+          }
+        ]
+      }
+    },
     '/skill/{skillId}/required-skill': {
       post: {
         tags: [
           'Skills'
         ],
-        summary: 'Adds a required skill to a skill skill.',
+        summary: 'Adds a required skill to a skill.',
         description: 'Optional extended description in CommonMark or HTML.',
         responses: {
           '200': {

@@ -16,6 +16,7 @@ class SkillControllerRouter extends MainRouter {
         this.router.post(paths.CREATE_SKILL, SkillController.createSkill );
         this.router.post(paths.ADD_REQUIRED_SKILL, SkillController.addRequiredSkill );
         this.router.delete(paths.REMOVE_REQUIRED_SKILL, SkillController.removeRequiredSkill );
+        this.router.get(paths.GET_RELATED_USERS, SkillController.getRelatedUsers );
     }
 }
 
