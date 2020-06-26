@@ -56,14 +56,12 @@ export default {
     async removeRequiredSkill(req: Request, res: Response) {
         const { id } = req.params;
         const { id: requiredSkillId } = req.body
-        console.log('id', id)
-        console.log('requiredSkillId', requiredSkillId)
         try {
             const createSkill = await SkillModel.updateOne({ _id: id },  { $pull:{required_skills: requiredSkillId} });
             return res.status(200).send(createSkill)
         } catch (e) {
             console.error(e);
-            //return res.sendStatus(500);
+            return res.sendStatus(500);
         }
     },
 

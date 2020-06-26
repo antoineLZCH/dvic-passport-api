@@ -17,6 +17,7 @@ export default class App {
         this.configureRoutes();
     }
 
+
     private addDependencies() {
         this.app.use(morgan('combined'));
         this.app.use(helmet());
