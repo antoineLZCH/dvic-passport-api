@@ -129,7 +129,7 @@ export default  {
           'Skills'
         ],
         summary: 'Returns all the skills.',
-        description: 'Optional extended description in CommonMark or HTML.',
+        
         responses: {
           '200': {
             description: 'A JSON array of user names',
@@ -230,7 +230,7 @@ export default  {
           'Skills'
         ],
         summary: 'Returns a skill.',
-        description: 'Optional extended description in CommonMark or HTML.',
+        
         responses: {
           '200': {
             description: 'A JSON array of user names',
@@ -267,7 +267,7 @@ export default  {
           'Skills'
         ],
         summary: 'Edits a skill.',
-        description: 'Optional extended description in CommonMark or HTML.',
+        
         responses: {
           '200': {
             description: 'A JSON containing the operation details'
@@ -390,7 +390,7 @@ export default  {
           'Skills'
         ],
         summary: 'Adds a required skill to a skill.',
-        description: 'Optional extended description in CommonMark or HTML.',
+        
         responses: {
           '200': {
             description: 'A JSON containing the operation details'
@@ -430,7 +430,7 @@ export default  {
           'Skills'
         ],
         summary: 'Removes a required skill.',
-        description: 'Optional extended description in CommonMark or HTML.',
+        
         responses: {
           '200': {
             description: 'A JSON containing the operation details'
