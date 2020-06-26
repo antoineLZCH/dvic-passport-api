@@ -1,5 +1,5 @@
 export default interface ISkill {
     name: string,
     description: string,
-    required_skills: ISkill[]
+    required_skills: String[]
 }

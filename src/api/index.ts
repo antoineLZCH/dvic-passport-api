@@ -20,7 +20,8 @@ class AppRouter extends MainRouter {
     }
     private declareDocumentation() {
         const swaggerDocument = yaml.load(fs.readFileSync(path.join(__dirname, './swagger.yaml'), { encoding: 'utf-8'}))
-        console.log(swaggerDocument);
+        const { API_PORT } = process.env;
+        swaggerDocument.servers[0].url = swaggerDocument.servers[0].url.replace('ENV_PORT', API_PORT)
         this.router.use(swaggerUi.serve)
         this.router.get('/docs', swaggerUi.setup(swaggerDocument))
     }

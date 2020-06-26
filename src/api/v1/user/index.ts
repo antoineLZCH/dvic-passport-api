@@ -13,9 +13,9 @@ class UserRouter extends MainRouter {
         this.router.get(paths.GET_USER, UserController.getUser);
         this.router.post(paths.CREATE_USER, UserController.createUser);
         this.router.delete(paths.DELETE_USER, UserController.deleteUser);
-        this.router.patch(paths.CREATE_USER_SKILL, UserController.createUserSkill);
         this.router.patch(paths.UPDATE_USER_SKILL, UserController.updateUserSkill);
-        this.router.patch(paths.DELETE_USER_SKILL, UserController.deleteUserSkill);
+        this.router.delete(paths.DELETE_USER_SKILL, UserController.deleteUserSkill);
+        this.router.post(paths.CREATE_USER_SKILL, UserController.createUserSkill);
     }
 }
 
