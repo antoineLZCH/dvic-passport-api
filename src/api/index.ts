@@ -1,12 +1,10 @@
 import { Request, Response } from 'express';
+import * as swaggerUi from 'swagger-ui-express';
 import MainRouter from '../helpers/router';
 import { paths } from './constants';
 import VersionedRouter from './v1';
 import { isValidToken } from '../middlewares'
-import fs = require('fs');
-import * as path from 'path'
-import * as yaml from 'js-yaml';
-const swaggerUi = require('swagger-ui-express');
+import swaggerDocument from './swagger'  
 class AppRouter extends MainRouter {
     constructor() {
         super(paths);
@@ -19,7 +17,6 @@ class AppRouter extends MainRouter {
         this.router.use(paths.V1, VersionedRouter);
     }
     private declareDocumentation() {
-        const swaggerDocument = yaml.load(fs.readFileSync(path.join(__dirname, './swagger.yaml'), { encoding: 'utf-8'}))
         const { PORT } = process.env;
         swaggerDocument.servers[0].url = swaggerDocument.servers[0].url.replace('ENV_PORT', PORT)
         this.router.use(swaggerUi.serve)
