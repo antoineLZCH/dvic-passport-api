@@ -129,7 +129,7 @@ export default  {
           'Skills'
         ],
         summary: 'Returns all the skills.',
-        description: 'Optional extended description in CommonMark or HTML.',
+        
         responses: {
           '200': {
             description: 'A JSON array of user names',
@@ -230,7 +230,7 @@ export default  {
           'Skills'
         ],
         summary: 'Returns a skill.',
-        description: 'Optional extended description in CommonMark or HTML.',
+        
         responses: {
           '200': {
             description: 'A JSON array of user names',
@@ -267,7 +267,7 @@ export default  {
           'Skills'
         ],
         summary: 'Edits a skill.',
-        description: 'Optional extended description in CommonMark or HTML.',
+        
         responses: {
           '200': {
             description: 'A JSON containing the operation details'
@@ -343,13 +343,54 @@ export default  {
         ]
       }
     },
+    '/skill/{skillId}/user': {
+      get: {
+        tags: [
+          'Skills'
+        ],
+        summary: 'Returns all users that have a certain skill.',
+        responses: {
+          '200': {
+            description: 'A JSON array of user names',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'array',
+                  items:{
+                    $ref: '#/components/schemas/User'
+                  }
+                }
+              }
+            }
+          },
+          '403': {
+            description: 'Forbidden'
+          }
+        },
+        security: [
+          {
+            bearerAuth: []
+          }
+        ],
+        parameters: [
+          {
+            'in': 'path',
+            name: 'skillId',
+            schema: {
+              type: 'string'
+            },
+            required: true
+          }
+        ]
+      }
+    },
     '/skill/{skillId}/required-skill': {
       post: {
         tags: [
           'Skills'
         ],
-        summary: 'Adds a required skill to a skill skill.',
-        description: 'Optional extended description in CommonMark or HTML.',
+        summary: 'Adds a required skill to a skill.',
+        
         responses: {
           '200': {
             description: 'A JSON containing the operation details'
@@ -389,7 +430,7 @@ export default  {
           'Skills'
         ],
         summary: 'Removes a required skill.',
-        description: 'Optional extended description in CommonMark or HTML.',
+        
         responses: {
           '200': {
             description: 'A JSON containing the operation details'
