@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/server.ts",
     "build": "tsc",
-    "start": "ENV_SILENT=true node dist/server.js"
+    "start": "ENV_SILENT=true node public/server.js"
   },
   "keywords": [],
   "author": "Antoine LOZACH, Axel André",
