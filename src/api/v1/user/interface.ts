@@ -7,7 +7,7 @@ interface ISkill {
 export interface IOwnedSkill {
     id?: string,
     level: number,
-    skill_info: ISkill[]
+    skill_info: String[]
 }
 
 export default interface IUser {

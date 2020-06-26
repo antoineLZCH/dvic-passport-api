@@ -41,19 +41,21 @@ async function deleteUser(req: Request, res: Response) {
 }
 
 async function createUserSkill(req: Request, res: Response) {
-    const sentRequest: { id: string, level: number } = req.body;
+  
+    const skillId  = req.params.skillId;
     try {
         const createdUserSkill = await UserModel.updateOne(
             { _id: req.params.id }, {
-            $push: {
-                owned_skills: {
-                    skill_infos: sentRequest.id,
-                    level: sentRequest.level
+                $push: {
+                    owned_skills: {
+                        skill_infos: skillId,
+                        level: req.body.level || 1
+                    }
                 }
-            }
-        }, { new: true });
-
-        return res.send(createdUserSkill).status(201);
+            }, { new: true });
+        
+      return res.send(createdUserSkill).status(201);
+      
     } catch (error) {
         res.status(500).send(error);
         throw new Error(error);
@@ -61,12 +63,14 @@ async function createUserSkill(req: Request, res: Response) {
 }
 
 async function updateUserSkill(req: Request, res: Response) {
-    const sentRequest: { id: string, level: number } = req.body;
+
+    const skillId = req.params.skillId;
+
     try {
         const updateUserSkill = await UserModel.updateOne({
-            _id: req.params.id, "owned_skills.skill_infos": sentRequest.id
+            _id: req.params.id, "owned_skills.skill_infos": skillId
         }, {
-            $set: { "owned_skills.$.level": sentRequest.level }
+            $set: { "owned_skills.$.level": req.body.level }
         });
         return res.send(updateUserSkill).status(200);
     } catch (error) {
@@ -76,12 +80,12 @@ async function updateUserSkill(req: Request, res: Response) {
 }
 async function deleteUserSkill(req: Request, res: Response) {
 
-    const sentRequest: { id: string } = req.body;
+    const skillId = req.params.skillId;
     try {
         const updateUserSkill = await UserModel.updateOne({
-            _id: req.params.id, "owned_skills.skill_infos": sentRequest.id
+            _id: req.params.id, "owned_skills.skill_infos": skillId
         }, {
-            $pull: { owned_skills: { skill_infos: sentRequest.id } }
+            $pull: { owned_skills: { skill_infos: skillId } }
         }
         );
         return res.send(updateUserSkill).status(200);
