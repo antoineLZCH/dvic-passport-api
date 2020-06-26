@@ -6,7 +6,6 @@ import getTokenFromRequest from '../helpers/getTokenFromRequest'
 
 const checkToken = (token: string) => {
     const { PUBLIC_KEY } = process.env;
-    console.log({PUBLIC_KEY});
     return jwt.verify(token, PUBLIC_KEY, {
         algorithms: ['RS256']
     });

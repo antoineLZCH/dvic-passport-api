@@ -41,11 +41,11 @@ async function deleteUser(req: Request, res: Response) {
 }
 
 async function createUserSkill(req: Request, res: Response) {
-    const sentRequest: { id: number, level: number } = req.body;
+    const sentRequest: { id: string, level: number } = req.body;
     try {
         const createdUserSkill = await UserModel.updateOne(
             { _id: req.params.id }, {
-            $set: {
+            $push: {
                 owned_skills: {
                     skill_infos: sentRequest.id,
                     level: sentRequest.level
@@ -61,7 +61,7 @@ async function createUserSkill(req: Request, res: Response) {
 }
 
 async function updateUserSkill(req: Request, res: Response) {
-    const sentRequest: { id: number, level: number } = req.body;
+    const sentRequest: { id: string, level: number } = req.body;
     try {
         const updateUserSkill = await UserModel.updateOne({
             _id: req.params.id, "owned_skills.skill_infos": sentRequest.id
@@ -76,7 +76,7 @@ async function updateUserSkill(req: Request, res: Response) {
 }
 async function deleteUserSkill(req: Request, res: Response) {
 
-    const sentRequest: { id: number } = req.body;
+    const sentRequest: { id: string } = req.body;
     try {
         const updateUserSkill = await UserModel.updateOne({
             _id: req.params.id, "owned_skills.skill_infos": sentRequest.id
