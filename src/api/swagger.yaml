@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  title: DVIC Passport API
+  description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+  version: 0.1.9
+  tags: ['Skills']
+components:
+        bearerAuth:
+            type: http
+            scheme: bearer
+            bearerFormat: JWT
+    schemas:
+        Skill: 
+            type: object
+            properties:
+                _id:
+                    type: string
+                    description: ID of the skill
+                name: 
+                    type: string
+                description: 
+                    type: string
+                required_skills:
+                    type: array
+                    items:
+                        type: object
+                        properties:
+                            _id:
+                                type: string
+                                description: ID of the skill
+                            name: 
+                                type: string
+                            description: 
+                                type: string
+                            required_skills:
+                                type: array
+                                items:
+                                    type: string
+        ArrayOfSkills: 
+            type: array
+            items:
+                $ref: '#/components/schemas/Skill'
+            minItems: 1
+                
+security:
+    - bearerAuth: []  
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Optional server description, e.g. Main (production) server
+  - url: http://staging-api.example.com
+    description: Optional server description, e.g. Internal staging server for testing
+paths:
+  /skill:
+    get:
+      tags: ['Skills']
+      summary: Returns a list of users.
+      description: Optional extended description in CommonMark or HTML.
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/ArrayOfSkills'
+        403:    # status code
+          description: Forbidden
+      security:
+          - bearerAuth: []
+    post:
+      tags: ['Skills']
+      summary: Creates a new skill.
+      description: Request to create a new skill
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Pet object that needs to be added to the store"
+          required: true
+          schema:
+            type: object
+            properties:
+              name: 
+                  type: string
+              description: 
+                  type: string
+              required_skills:
+                  type: array
+                  items:
+                      type: string
+                  required: false
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  _id:
+                      type: string
+                      description: ID of the skill
+                  name: 
+                      type: string
+                  description: 
+                      type: string
+                  required_skills:
+                      type: array
+                      items:
+                          type: string
+                      required: false
+        403:    # status code
+          description: Forbidden
+      security:
+          - bearerAuth: []
+  /skill/{skillId}:
+    get:
+      tags: ['Skills']
+      summary: Returns a skill.
+      description: Optional extended description in CommonMark or HTML.
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Skill'
+        403:    # status code
+          description: Forbidden
+      security:
+          - bearerAuth: []
+      parameters:
+        - in: path
+          name: skillId
+          schema:
+            type: string
+          required: true
+    delete:
+      tags: ['Skills']
+      summary: Removes a skill.
+      description: Optional extended description in CommonMark or HTML.
+      responses:
+        '200':    # status code
+          description: A JSON containing the operation details
+      security:
+          - bearerAuth: []
+      parameters:
+        - in: path
+          name: skillId
+          schema:
+            type: string
+          required: true
+    patch:
+      tags: ['Skills']
+      summary: Removes a skill.
+      description: Optional extended description in CommonMark or HTML.
+      responses:
+        200:    # status code
+          description: A JSON containing the operation details
+        403:    # status code
+          description: Forbidden
+      parameters:
+        - in: path
+          name: skillId
+          schema:
+            type: string
+          required: true
+        - in: "body"
+          name: "body"
+          description: "An objet with `Skill`'s properties that will overide the saved one."
+          required: true
+          schema:
+            type: object
+            properties:
+              name: 
+                  type: string
+              description: 
+                  type: string
+              required_skills:
+                  type: array
+                  items:
+                      type: string
+                  required: false
