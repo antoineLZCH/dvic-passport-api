@@ -4,7 +4,9 @@
   "description": "Server for DVIC Passeport project",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon src/server.ts",
+    "build": "tsc",
+    "start": "ENV_SILENT=true node dist/server.js"
   },
   "keywords": [],
   "author": "Antoine LOZACH, Axel André",

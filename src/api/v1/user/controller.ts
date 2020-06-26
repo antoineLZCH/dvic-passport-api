@@ -51,8 +51,11 @@ async function createUserSkill(req: Request, res: Response) {
                         level: req.body.level || 1
                     }
                 }
+            }
         }, { new: true });
-        return res.send(createdUserSkill).status(200);
+        
+      return res.send(createdUserSkill).status(201);
+      
     } catch (error) {
         res.status(500).send(error);
         throw new Error(error);
