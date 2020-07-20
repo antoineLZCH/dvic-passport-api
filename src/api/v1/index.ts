@@ -16,7 +16,6 @@ class VersionedRouter extends MainRouter {
         this.router.use(paths.USER, UserRouter.getRouter());
         this.router.use(paths.SKILL, SkillRouter.getRouter());
     }
-
     private declareBaseRoute() {
         this.router.get(paths.DEFAULT, (req: Request, res: Response) => {
             return res.send('This is version 1 of the API.')

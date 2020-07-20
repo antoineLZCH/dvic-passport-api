@@ -1,6 +1,8 @@
 import { Request, Response } from 'express'
 import SkillModel from './model'
+import UserModel from '../user/model'
 import ISkill from './interface'
+import user from '../user'
 
 export default {
 
@@ -56,14 +58,12 @@ export default {
     async removeRequiredSkill(req: Request, res: Response) {
         const { id } = req.params;
         const { id: requiredSkillId } = req.body
-        console.log('id', id)
-        console.log('requiredSkillId', requiredSkillId)
         try {
             const createSkill = await SkillModel.updateOne({ _id: id }, { $pull: { required_skills: requiredSkillId } });
             return res.status(200).send(createSkill)
         } catch (e) {
             console.error(e);
-            //return res.sendStatus(500);
+            return res.sendStatus(500);
         }
     },
 
@@ -73,6 +73,17 @@ export default {
         try {
             const createSkill = await SkillModel.updateOne({ _id: id }, { $push: { required_skills: requiredSkillId } });
             return res.status(200).send(createSkill)
+        } catch (e) {
+            console.error(e);
+            return res.sendStatus(500);
+        }
+    },
+    async getRelatedUsers(req: Request, res: Response) {
+        const { id } = req.params;
+        try {
+            const Users = await UserModel.find({ owned_skills: {$elemMatch: { skill_infos: id}} }).populate('owned_skills.skill_infos');;
+            console.log(Users)
+            return res.status(200).send(Users)
         } catch (e) {
             console.error(e);
             return res.sendStatus(500);
