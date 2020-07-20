@@ -27,11 +27,7 @@ export default class App {
         this.app.use(bodyParser.urlencoded({extended: true}));
         this.app.use(compress());
         this.app.use(cors({
-            exposedHeaders: 'authorization, x-refresh-token, x-token-expiry-time',
-            origin: (origin: string, callback) => {
-                if (!this.whitelist || this.whitelist.includes(origin)) callback(null, true);
-                else (new Error('Not Allowed by CORS.'))
-            }
+            exposedHeaders: 'authorization, x-refresh-token, x-token-expiry-time'
         }));
     }
 
