@@ -19,5 +19,6 @@ export default (req: Request, res: Response, next: NextFunction) => {
         req.app.set('user', checkToken(token));
         return next()
     }
+    console.warn('[checkToken]', checkToken(token));
     return res.sendStatus(403);
 }
