@@ -1,5 +1,5 @@
 import express from 'express';
-import {Application, Router, Request, Response} from 'express';
+import { Application, Router } from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import compress from 'compression';
@@ -24,15 +24,17 @@ export default class App {
         this.app.use(morgan('combined'));
         this.app.use(helmet());
         this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({extended: true}));
+        this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(compress());
         this.app.use(cors({
             exposedHeaders: 'authorization, x-refresh-token, x-token-expiry-time',
             origin: (origin: string, callback) => {
+                if (this.whitelist.includes('*')) callback(null, true);
                 if (!this.whitelist || this.whitelist.includes(origin)) callback(null, true);
                 else (new Error('Not Allowed by CORS.'))
             }
         }));
+
     }
 
     private configureRoutes() {
