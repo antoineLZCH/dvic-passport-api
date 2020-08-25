@@ -12,7 +12,7 @@ export default class App {
     public app: Application = express();
     private readonly port: string;
     public AppRouter: Router = AppRouter;
-    private whitelist: Array<string> = [];
+    private whitelist: Array<string> = ['*'];
 
     constructor(port: string) {
         this.port = port;
