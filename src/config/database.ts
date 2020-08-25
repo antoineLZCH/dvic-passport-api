@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const { DB_HOST, DB_PASSWORD, DB_NAME, DB_USER } = process.env;
-const SERVER_ADDRESS = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`;
+const { DB_ENDPOINT } = process.env;
+const SERVER_ADDRESS = DB_ENDPOINT;
 
 // @ts-ignore
 mongoose.connect(SERVER_ADDRESS, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {

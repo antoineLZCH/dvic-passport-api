@@ -12,7 +12,7 @@ export default class App {
     public app: Application = express();
     private readonly port: string;
     public AppRouter: Router = AppRouter;
-    private whitelist: Array<string> = [];
+    private whitelist: Array<string> = ['*'];
 
     constructor(port: string) {
         this.port = port;
@@ -27,7 +27,11 @@ export default class App {
         this.app.use(bodyParser.urlencoded({extended: true}));
         this.app.use(compress());
         this.app.use(cors({
-            exposedHeaders: 'authorization, x-refresh-token, x-token-expiry-time'
+            exposedHeaders: 'authorization, x-refresh-token, x-token-expiry-time',
+            origin: (origin: string, callback) => {
+                if (!this.whitelist || this.whitelist.includes(origin)) callback(null, true);
+                else (new Error('Not Allowed by CORS.'))
+            }
         }));
     }
 
