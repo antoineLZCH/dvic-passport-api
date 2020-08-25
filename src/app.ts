@@ -26,15 +26,15 @@ export default class App {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(compress());
-        if (process.env.ENV_SILENT) {
-            this.app.use(cors({
-                exposedHeaders: 'authorization, x-refresh-token, x-token-expiry-time',
-                origin: (origin: string, callback) => {
-                    if (!this.whitelist || this.whitelist.includes(origin)) callback(null, true);
-                    else (new Error('Not Allowed by CORS.'))
-                }
-            }));
-        }
+        this.app.use(cors({
+            exposedHeaders: 'authorization, x-refresh-token, x-token-expiry-time',
+            origin: (origin: string, callback) => {
+                if (this.whitelist.includes('*')) callback(null, true);
+                if (!this.whitelist || this.whitelist.includes(origin)) callback(null, true);
+                else (new Error('Not Allowed by CORS.'))
+            }
+        }));
+
     }
 
     private configureRoutes() {
